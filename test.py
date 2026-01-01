@@ -43,8 +43,7 @@ def encode_categories(df, cat_maps):
 
 X = encode_categories(X, cat_maps)
 
-scaler = StandardScaler()
-X[numerical_cols] = scaler.fit_transform(X[numerical_cols])
+X[numerical_cols] = scaler.transform(X[numerical_cols])
 
 X = X[feature_order]
 

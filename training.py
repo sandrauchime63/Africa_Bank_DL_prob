@@ -17,8 +17,10 @@ def train_epoch(model, optimizer, loss_fn, data_loader, device="cpu"):
         optimizer.step()
         training_loss += loss.data.item() * inputs.size(0)
 
-        preds = output.argmax(dim=1)
-        correct += (preds == targets).sum().item()
+        probs = torch.sigmoid(output)
+        preds = (probs > 0.5).long()
+
+        correct += (preds == targets.long()).sum().item()
         total += targets.size(0)
 
     train_acc = correct / total
@@ -40,8 +42,10 @@ def predict(model, loss_fn, data_loader, device="cpu"):
             loss = loss_fn(outputs, targets)   # SCALAR loss
             total_loss += loss.item() * inputs.size(0)
 
-            preds=outputs.argmax(dim=1)
-            correct+=(preds == targets).sum().item()
+            probs = torch.sigmoid(outputs)
+            preds = (probs > 0.5).long()
+
+            correct += (preds == targets.long()).sum().item()
             total += targets.size(0)
     val_acc = correct / total
     avg_loss = total_loss / total
