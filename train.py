@@ -83,7 +83,7 @@ train_losses=[]
 val_losses=[]
 for epoch in range(num_epochs):
     train_loss, train_acc = train_epoch(model, optimizer, loss_fn, train_loader)
-    val_loss, val_acc = predict(model, loss_fn, val_loader)  # you'd write eval_epoch
+    val_loss, val_acc = predict(model, loss_fn, val_loader)  
     train_losses.append(train_loss)
     val_losses.append(val_loss)
 
@@ -93,4 +93,7 @@ with open("cat_list.pkl", "wb") as f:
     pickle.dump(cat_list, f)
 with open("scaler.pkl", "wb") as f:
     pickle.dump(scaler, f)
+feature_order= categorical_cols + numerical_cols
+with open("feature_order.pkl", "wb") as f:
+    pickle.dump(feature_order, f)
 torch.save(model.state_dict(), 'model.pt')
