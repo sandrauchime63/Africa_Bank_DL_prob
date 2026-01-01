@@ -4,6 +4,9 @@ env/
 SampleSubmission.csv
 *.pyc
 manifest-e268f67161c155de502276443b494f7c20250311-22142-1qdfioo.json
-
+Test.csv
+Train.csv
+VariableDefinitions.csv
+financial_data
 
 #R-NEWBIE# Jumia voucher code###

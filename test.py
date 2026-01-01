@@ -59,6 +59,6 @@ with torch.no_grad():
 
 
 df["probability"] = probs.cpu().numpy()
-df["prediction"] = preds.cpu().numpy()
+df["bank_account"] = preds.cpu().numpy()
 
 df.to_csv("test_predictions.csv", index=False)
